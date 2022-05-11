@@ -18,22 +18,27 @@ export class ProductService {
 
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${currentCategoryId}`
 
-    return this.httpClient.get<GetResponse>(searchUrl).pipe(
+    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
       map(response => response._embedded.products)
     );
   }
 
   getProductCategories() {
-    return this.httpClient.get<GetResponse>(this.categoryUrl).pipe(
+    return this.httpClient.get<GetResponseCategory>(this.categoryUrl).pipe(
       map(response => response._embedded.productCategory)
     );
   }
 
 }
 
-interface GetResponse {
+interface GetResponseProducts {
   _embedded: {
     products: Product[],
+  }
+}
+
+interface GetResponseCategory {
+  _embedded: {
     productCategory: ProductCategory[]
   }
 }
