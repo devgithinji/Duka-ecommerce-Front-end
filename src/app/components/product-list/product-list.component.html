@@ -22,27 +22,22 @@
 
       </div>
 
-      <div class="footer-pagination">
-        <div class="row">
-          <div class="col-md-6"></div>
-          <div class="col-md-3">
-            <div class="items">
-              <label>Item per page</label> <select>
+      <div class="footer-pagination float-right">
+        <div class="row justify-content-center p-3">
+          <div class="col-auto">
+            <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [collectionSize]="totalElements"
+                            (pageChange)="listProducts()" [maxSize]="5" [boundaryLinks]="true">
+
+            </ngb-pagination>
+          </div>
+          <div class="col-auto">
+            <span class="mr-2">Page Size</span>
+            <select class="form-select" (change)="updatePageSize($event)">
+              <option selected="true">5</option>
               <option>10</option>
               <option>20</option>
-              <option>30</option>
-              <option>40</option>
+              <option>50</option>
             </select>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="number">1 - 10 of 100</div>
-          </div>
-          <div class="col-md-1">
-            <div class="arrows">
-              <a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-              <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            </div>
           </div>
         </div>
       </div>
