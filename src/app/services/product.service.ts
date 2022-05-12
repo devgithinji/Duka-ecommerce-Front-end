@@ -21,7 +21,7 @@ export class ProductService {
     return this.getProducts(searchUrl);
   }
 
-  searchProducts(keyword: string) {
+  searchProducts(keyword: string): Observable<Product[]> {
     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${keyword}`
     return this.getProducts(searchUrl);
   }
@@ -39,7 +39,7 @@ export class ProductService {
   }
 
 
-  getProduct(productId: number) {
+  getProduct(productId: number): Observable<Product> {
     const productUrl = `${this.baseUrl}/${productId}`;
     return this.httpClient.get<Product>(productUrl);
   }
