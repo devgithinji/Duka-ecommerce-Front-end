@@ -39,6 +39,10 @@ export class ProductService {
   }
 
 
+  getProduct(productId: number) {
+    const productUrl = `${this.baseUrl}/${productId}`;
+    return this.httpClient.get<Product>(productUrl);
+  }
 }
 
 interface GetResponseProducts {
