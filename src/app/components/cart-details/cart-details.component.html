@@ -1,0 +1,49 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div *ngIf="cartItems.length > 0">
+        <table class="table table-bordered">
+          <tr>
+            <th style="width: 20%">Product Image</th>
+            <th style="width: 50%">Product Detail</th>
+            <th style="width: 30%"></th>
+          </tr>
+          <tr *ngFor="let cartItem of cartItems">
+            <td><img src="{{cartItem.imageUrl}}" class="img-responsive"
+                     width="150px"></td>
+            <td>
+              <p>{{cartItem.name}}</p>
+              <p>{{cartItem.unitPrice | currency: 'USD'}}</p>
+            </td>
+            <td>
+              <div class="items">
+                <label>Quantity</label>
+                <div>
+                  <button (click)="incrementQuantity(cartItem)" class="btn btn-primary btn-sm font-weight-bold"><i
+                    class="fas fa-plus"></i></button>
+                  <span class="m-2">{{cartItem.quantity}}</span>
+                  <button (click)="decrementQuantity(cartItem)" class="btn btn-primary btn-sm font-weight-bold"><i
+                    class="fas fa-minus"></i></button>
+                </div>
+              </div>
+              <p>Sub-total {{cartItem.quantity * cartItem.unitPrice |currency: 'USD'}}</p>
+              <button (click)="remove(cartItem)" class="btn btn-primary btn-sm">Remove</button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td><b>Total Quantity: {{totalQuantity}}</b>
+              <p>Shipping FREE</p>
+              <b>Total Price: {{totalPrice | currency: 'USD'}}</b><br>
+              <a href="checkout-page.html" class="primary-btn">Checkout</a>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+      <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
+        Your shopping cart is empty
+      </div>
+    </div>
+  </div>
+</div>
