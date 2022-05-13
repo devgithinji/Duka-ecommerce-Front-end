@@ -13,7 +13,8 @@ export class CartService {
   totalQuantity: Subject<number> = new Subject<number>();
 
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
 
   addToCart(cartItem: CartItem) {
@@ -21,7 +22,7 @@ export class CartService {
     let existingCartItem: CartItem | undefined;
 
     if (this.cartItems.length > 0) {
-      existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id  === cartItem.id)
+      existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id === cartItem.id)
       alreadyExistsInCart = (existingCartItem != null)
     }
 
@@ -35,7 +36,7 @@ export class CartService {
   }
 
 
-  private computeCartTotals() {
+  computeCartTotals() {
     let totalPriceValue: number = 0;
     let totalQuantityValue: number = 0;
 
