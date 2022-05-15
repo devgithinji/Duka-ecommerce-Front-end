@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CartItem} from "../common/cart-item";
-import {Subject} from "rxjs";
+import {ReplaySubject, Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -9,8 +9,8 @@ import {HttpClient} from "@angular/common/http";
 export class CartService {
 
   cartItems: CartItem[] = [];
-  totalPrice: Subject<number> = new Subject<number>();
-  totalQuantity: Subject<number> = new Subject<number>();
+  totalPrice: Subject<number> = new ReplaySubject<number>(0);
+  totalQuantity: Subject<number> = new ReplaySubject<number>(0);
 
 
   constructor(private httpClient: HttpClient) {
