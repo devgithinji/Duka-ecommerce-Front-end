@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 import {Order} from "../../common/order";
 import {OrderItem} from "../../common/order-item";
 import {Purchase} from "../../common/purchase";
-import {Customer} from "../../common/customer";
+
 
 @Component({
   selector: 'app-checkout',
@@ -188,11 +188,9 @@ export class CheckoutComponent implements OnInit {
     purchase.orderItems = orderItems;
 
     //call rest API
-
     this.checkoutService.placeOrder(purchase).subscribe({
       next: response => {
         alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`)
-
         //reset cart
         this.resetCart();
       },
@@ -200,6 +198,7 @@ export class CheckoutComponent implements OnInit {
         alert(`Something went wrong: ${err.message}`)
       }
     })
+
   }
 
   copyShippingAddressToBillingAddress(event: Event) {
