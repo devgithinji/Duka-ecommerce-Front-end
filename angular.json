@@ -70,6 +70,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "qa": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -82,6 +90,9 @@
             },
             "development": {
               "browserTarget": "duka-frontend:build:development"
+            },
+            "qa": {
+              "browserTarget": "duka-frontend:build:qa"
             }
           },
           "defaultConfiguration": "development"
