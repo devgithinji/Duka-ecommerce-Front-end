@@ -1,7 +1,8 @@
 <div class="login-status-header">
   <div *ngIf="isAuthenticated && userFullName" class="login-status-user-info">
-     {{userFullName.substring(0,20)}}...
+    {{userFullName.substring(0, 20)}}...
   </div>
-  <button *ngIf="!isAuthenticated" routerLink="/login" class="security-btn">Login</button>
-  <button *ngIf="isAuthenticated" (click)="logout()" class="security-btn">Logout</button>
+  <button *ngIf="!isAuthenticated" routerLink="/login" class="security-btn mr-1">Login</button>
+  <button *ngIf="isAuthenticated" (click)="logout()" class="security-btn mr-1">Logout</button>
+  <button *ngIf="isAuthenticated" routerLink="/members" class="security-btn">Member</button>
 </div>
