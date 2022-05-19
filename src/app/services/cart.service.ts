@@ -13,8 +13,7 @@ export class CartService {
   totalQuantity: Subject<number> = new ReplaySubject<number>(0);
 
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
 
   addToCart(cartItem: CartItem) {

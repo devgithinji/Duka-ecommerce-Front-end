@@ -9,6 +9,7 @@ import {OktaAuthService} from "@okta/okta-angular";
 export class LoginStatusComponent implements OnInit {
   isAuthenticated: boolean | undefined = false;
   userFullName: string | undefined = '';
+  storage: Storage = localStorage;
 
   constructor(private oktaAuthService: OktaAuthService) {
   }
@@ -27,6 +28,8 @@ export class LoginStatusComponent implements OnInit {
       this.oktaAuthService.getUser().then(
         res => {
           this.userFullName = res.name
+          const email = res.email;
+          this.storage.setItem("userEmail", JSON.stringify(email))
         }
       )
     }
