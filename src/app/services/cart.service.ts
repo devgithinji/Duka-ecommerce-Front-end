@@ -14,6 +14,9 @@ export class CartService {
   storage: Storage = localStorage;
 
 
+<<<<<<< HEAD
+  constructor(private httpClient: HttpClient) {}
+=======
   constructor(private httpClient: HttpClient) {
     let data = JSON.parse(this.storage.getItem('cartItems') || '[]');
     if (data != null) {
@@ -21,6 +24,7 @@ export class CartService {
       this.computeCartTotals();
     }
   }
+>>>>>>> master
 
   persistCartItems() {
     this.storage.setItem('cartItems', JSON.stringify(this.cartItems));

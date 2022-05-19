@@ -36,7 +36,7 @@
             <div class="clearfix"></div>
             <div class="col-md-6">
               <div class="input-space">
-                <input formControlName="email" type="text" placeholder="Email Address">
+                <input formControlName="email" type="text" placeholder="Email Address" readonly>
                 <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="invalid-feedback d-block">
                   <div *ngIf="email?.errors?.required || email?.errors?.notOnlyWhiteSpace">
                     Email is required
