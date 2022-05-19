@@ -6,7 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 
 import {AppComponent} from './app.component';
 import {ProductListComponent} from './components/product-list/product-list.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./services/product.service";
 import {Router, RouterModule, Routes} from "@angular/router";
 import {ProductCategoryMenuComponent} from './components/product-category-menu/product-category-menu.component';
@@ -22,7 +22,8 @@ import {OKTA_CONFIG, OktaAuthGuard, OktaAuthModule, OktaCallbackComponent} from 
 
 import appConfig from "./config/app-config";
 import {MembersPageComponent} from './components/members-page/members-page.component';
-import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import {OrderHistoryComponent} from './components/order-history/order-history.component';
+import {AuthInterceptorService} from "./services/auth-interceptor.service";
 
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth: any, injector: any) => {
@@ -71,7 +72,11 @@ const routes: Routes = [
     FormsModule,
     OktaAuthModule
   ],
-  providers: [ProductService, {provide: OKTA_CONFIG, useValue: oktaConfig}],
+  providers: [ProductService, {provide: OKTA_CONFIG, useValue: oktaConfig}, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
