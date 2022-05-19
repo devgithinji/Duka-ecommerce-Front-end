@@ -11,10 +11,24 @@ export class CartService {
   cartItems: CartItem[] = [];
   totalPrice: Subject<number> = new ReplaySubject<number>(0);
   totalQuantity: Subject<number> = new ReplaySubject<number>(0);
+  storage: Storage = localStorage;
 
 
+<<<<<<< HEAD
   constructor(private httpClient: HttpClient) {}
+=======
+  constructor(private httpClient: HttpClient) {
+    let data = JSON.parse(this.storage.getItem('cartItems') || '[]');
+    if (data != null) {
+      this.cartItems = data;
+      this.computeCartTotals();
+    }
+  }
+>>>>>>> master
 
+  persistCartItems() {
+    this.storage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
 
   addToCart(cartItem: CartItem) {
     let alreadyExistsInCart: boolean = false;
@@ -47,6 +61,8 @@ export class CartService {
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
     this.logCartData(totalPriceValue, totalQuantityValue);
+    //persist cart data
+    this.persistCartItems();
   }
 
 
