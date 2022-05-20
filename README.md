@@ -4,7 +4,7 @@
 
 click *[here](https://duka-app.herokuapp.com/products)* to visit application
 
-Login credentials
+**Login credentials**
 
 email: test@gmail.com
 
