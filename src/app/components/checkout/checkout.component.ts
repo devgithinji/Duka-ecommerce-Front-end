@@ -21,6 +21,7 @@ import {PaymentInfo} from "../../common/payment-info";
 })
 export class CheckoutComponent implements OnInit {
 
+  isDisabled: boolean = false;
   totalPrice: number = 0;
   totalQuantity: number = 0;
   creditCardYears: number[] = [];
@@ -184,6 +185,7 @@ export class CheckoutComponent implements OnInit {
     this.paymentInfo.currency = "USD";
 
     if (!this.checkoutFormGroup.invalid && this.displayError.textContent === "") {
+      this.isDisabled = true;
       this.checkoutService.createPaymentIntent(this.paymentInfo).subscribe(
         (paymentIntentResponse) => {
           this.stripe.confirmCardPayment(paymentIntentResponse.client_secret, {
@@ -205,6 +207,7 @@ export class CheckoutComponent implements OnInit {
             .then(function (result: any) {
               if (result.error) {
                 alert(`There was an error: ${result.error.message}`)
+                this.isDisabled = false;
               } else {
 
                 //call rest API
@@ -213,9 +216,11 @@ export class CheckoutComponent implements OnInit {
                     alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`)
                     //reset cart
                     this.resetCart();
+                    this.isDisabled = false;
                   },
                   error: (err: any) => {
                     alert(`Something went wrong: ${err.message}`)
+                    this.isDisabled = false;
                   }
                 })
 
