@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl=true --sslKey=./ssl-localhost/localhost.key --sslCert=./ssl-localhost/localhost.crt",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -24,6 +24,7 @@
     "@okta/okta-auth-js": "^6.5.1",
     "@okta/okta-signin-widget": "^5.16.1",
     "bootstrap": "~4.4.1",
+    "express": "^4.18.1",
     "rxjs": "~7.5.0",
     "stripe": "^9.2.0",
     "symbol-observable": "^4.0.0",
